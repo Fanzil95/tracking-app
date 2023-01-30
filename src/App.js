@@ -5,43 +5,57 @@ import Table from './components/Table';
 
 
 function App() {
-//  const [position, setPosition] = useState({defaultCoordinate:[59.57, 30.19],receivedCoordinate:[],complited: false})
- const [stateUrl, setStateUrl]=useState({
+const [stateData, setStateData] = useState({complited:false, data:''})
+const[stateMap, setStateMap] = useState({
   receivedCoordinate:[],
-  defaultCoordinate:[59.57, 30.19],
-  complited:false, 
-  url:'',
-  data:[]
+  defaultCoordinate:[59.9386, 30.3141],
+  complited:false,
 })
+function getDataApi(data){
+  setStateData({complited:true, data:data})
+}
+// async function fetchJson () {
 
-function getUrl (f,t){
-  setStateUrl(
+//   try{
+//   const response = await fetch(stateMap.url)
+//   const poly = await response.json()
+//   poly.routes.map(route=>setStateData({data:route.geometry.coordinates}))
+//   }
+//   catch(error){
+//     console.log(error)
+//   }
+//   finally{
+//     setStateJson(true)
+//   }
+  
+  
+// fetch(stateUrl.url)
+// .then(response => response.json())
+// .then(poly => {
+//   console.log(poly)
+//  poly.routes.map(route=>setStateUrl({receivedCoordinate:[f,t], defaultCoordinate:[59.57, 30.19],complited: true, data:route.geometry.coordinates}))
+//   })
+
+
+function getCoordinates (f,t){
+    setStateMap(
     {
-      url: `http://router.project-osrm.org/route/v1/driving/${f};${t}?alternatives=false&steps=false&geometries=geojson&overview=full&annotations=false`,
       receivedCoordinate:[f.reverse(),t.reverse()],
       defaultCoordinate:[59.57, 30.19],
       complited:true,
-      // url: `http://router.project-osrm.org/route/v1/driving/${f};${t}?overview=false`,
-      data: [],
-    }
-    )
-  fetch(stateUrl.url)
-  .then(response => response.json())
-  .then(poly => {
-    console.log(poly)
-   poly.routes.map(route=>setStateUrl({receivedCoordinate:[f,t], defaultCoordinate:[59.57, 30.19],complited: true, data:route.geometry.coordinates}))
     })
+  }
+    
 
-}
+
+    
 
 // console.log(stateUrl.data.map(data=>data.reverse()))
  
   return (
-    
-    <div className='mapContainer'>
-      <Table onChangePoly={getUrl}    
-      /> 
-      <Map position={stateUrl} _polyline={stateUrl.data} /> 
+        <div className='mapContainer'>
+      <Table getDataApi={getDataApi} getCoordinates={getCoordinates}/> 
+      <Map position={stateMap}  statusData={stateData}/> 
     </div>
   );
 }

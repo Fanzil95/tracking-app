@@ -31,14 +31,29 @@ const columns = [
     },
   ];
   
-const _Table = ({onChangePoly}) => {
+const _Table = ({getCoordinates, getDataApi}) => {
+
+  function getDataCoordinates(f,t){
+    const urlApi = {url: `http://router.project-osrm.org/route/v1/driving/${f};${t}?alternatives=false&steps=false&geometries=geojson&overview=full&annotations=false`}
+    console.log(urlApi.url)
+    getCoordinates(f,t)
+
+    fetch(urlApi.url)
+.then(response => response.json())
+.then(poly => {
+ poly.routes.map(route=>getDataApi(route.geometry.coordinates))
+  })
+
+
+  }
     return (
-        <Table 
+        <Table style={{cursor:'pointer'}}
         dataSource={dataSource} 
         columns={columns}
+        // rowClassName={}
         onRow={(record)=>{ //record - объект с координатными  данными. onRow 
             return {
-                onClick: ()=>{onChangePoly([record.fromLng,record.fromLat], [record.toLng, record.toLat])}
+                onClick: ()=>{getDataCoordinates([record.fromLng,record.fromLat], [record.toLng, record.toLat])}
             }
         }}
         />
