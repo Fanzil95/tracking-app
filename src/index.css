@@ -1,6 +1,7 @@
 .leaflet-container{
-    height: 500px;
-    width: 500px;
+    height: 400px;
+    width: 400px;
+    padding: 5px;
 }
 
 .mapContainer {
@@ -8,3 +9,12 @@
     display: flex;
     
 }
+
+
+.row{
+    background-color: red ;
+}
+
+ table>tbody>tr:hover>td{
+    background: none !important;
+ }

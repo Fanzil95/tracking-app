@@ -1,7 +1,5 @@
 import React from 'react';
 import { Table } from 'antd';
-import {dataSource} from './dataSource'
-
 
 const columns = [
     {
@@ -31,9 +29,10 @@ const columns = [
     },
   ];
   
-const _Table = ({getCoordinates, getDataApi}) => {
+const _Table = ({dataSource, getCoordinates, getDataApi, handleRow}) => {
 
-  function getDataCoordinates(f,t){
+  function getDataCoordinates(f,t, id){
+    handleRow(id)
     const urlApi = {url: `http://router.project-osrm.org/route/v1/driving/${f};${t}?alternatives=false&steps=false&geometries=geojson&overview=full&annotations=false`}
     console.log(urlApi.url)
     getCoordinates(f,t)
@@ -47,13 +46,13 @@ const _Table = ({getCoordinates, getDataApi}) => {
 
   }
     return (
-        <Table style={{cursor:'pointer'}}
+        <Table 
         dataSource={dataSource} 
         columns={columns}
-        // rowClassName={}
+        rowClassName={record=>record.complited?'row':''}
         onRow={(record)=>{ //record - объект с координатными  данными. onRow 
             return {
-                onClick: ()=>{getDataCoordinates([record.fromLng,record.fromLat], [record.toLng, record.toLat])}
+                onClick: ()=>{getDataCoordinates([record.fromLng,record.fromLat], [record.toLng, record.toLat], record.id)}
             }
         }}
         />

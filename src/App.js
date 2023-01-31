@@ -2,9 +2,12 @@
 import React, {useState} from 'react';
 import Map from './components/Map';
 import Table from './components/Table';
+import {dataSource} from './components/dataSource'
+
 
 
 function App() {
+const [stateDataSourse, setStateDataSourse] = useState(dataSource)
 const [stateData, setStateData] = useState({complited:false, data:''})
 const[stateMap, setStateMap] = useState({
   receivedCoordinate:[],
@@ -14,28 +17,18 @@ const[stateMap, setStateMap] = useState({
 function getDataApi(data){
   setStateData({complited:true, data:data})
 }
-// async function fetchJson () {
-
-//   try{
-//   const response = await fetch(stateMap.url)
-//   const poly = await response.json()
-//   poly.routes.map(route=>setStateData({data:route.geometry.coordinates}))
-//   }
-//   catch(error){
-//     console.log(error)
-//   }
-//   finally{
-//     setStateJson(true)
-//   }
-  
-  
-// fetch(stateUrl.url)
-// .then(response => response.json())
-// .then(poly => {
-//   console.log(poly)
-//  poly.routes.map(route=>setStateUrl({receivedCoordinate:[f,t], defaultCoordinate:[59.57, 30.19],complited: true, data:route.geometry.coordinates}))
-//   })
-
+console.log(stateDataSourse)
+function handleRow(id){
+setStateDataSourse(
+  stateDataSourse.map((data)=>{
+    data.complited=false
+    if(id===data.id){
+      data.complited=true
+    }
+    return data
+  })
+)
+}
 
 function getCoordinates (f,t){
     setStateMap(
@@ -54,7 +47,12 @@ function getCoordinates (f,t){
  
   return (
         <div className='mapContainer'>
-      <Table getDataApi={getDataApi} getCoordinates={getCoordinates}/> 
+      <Table 
+      getDataApi={getDataApi} 
+      getCoordinates={getCoordinates} 
+      dataSource={stateDataSourse}
+      handleRow={handleRow}
+      /> 
       <Map position={stateMap}  statusData={stateData}/> 
     </div>
   );
