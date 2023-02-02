@@ -9,15 +9,15 @@ console.log(statusData.data, statusData.complited)
 // const limeOptions = { color: 'blue' }
 
 
-function MyComponent() {
-    const map = useMap()
-    // map.setView(position.defaultCoordinate)
-    // map.fitBounds(position.complited?position.receivedCoordinate:position.defaultCoordinate)
-  //  map.setView(statusData.complited?statusData.data[statusData.data.length/2]:position.defaultCoordinate)
-  map.setView(statusData.complited?statusData.data[1]:position.defaultCoordinate)
+// function MyComponent() {
+//     const map = useMap()
+//     // map.setView(position.defaultCoordinate)
+//     // map.fitBounds(position.complited?position.receivedCoordinate:position.defaultCoordinate)
+//   //  map.setView(statusData.complited?statusData.data[statusData.data.length/2]:position.defaultCoordinate)
+//   map.setView(statusData.complited?statusData.data[1]:position.defaultCoordinate)
 
-  return null
-  }
+//   return null
+//   }
 
   function Bounds(){
     const map = useMap()
