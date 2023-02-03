@@ -20,7 +20,7 @@ function getDataCoordinates(f,t, id){
         <Table 
         dataSource={dataSource} 
         columns={columns}
-        rowClassName={record=>record.complited?'row':''}
+        rowClassName={record=>record.complited?'row rowRed':'row'}
         onRow={(record)=>{ //record - объект с координатными  данными. onRow 
             return {
                 onClick: ()=>{getDataCoordinates([record.fromLng,record.fromLat], [record.toLng, record.toLat], record.id)}

@@ -14,8 +14,10 @@
 width: 60%;
 }
 
-
 .row{
+    cursor: pointer;
+}
+.rowRed{
     background-color: red ;
 }
 

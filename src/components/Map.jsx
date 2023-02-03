@@ -1,4 +1,3 @@
-import { tileLayer } from 'leaflet-css'
 import React from 'react'
 import { MapContainer, TileLayer, Marker, Polyline } from 'react-leaflet'
 import {useMap} from 'react-leaflet/hooks'
