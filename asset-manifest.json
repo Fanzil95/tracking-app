@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/tracking-app/static/css/main.752a8136.css",
-    "main.js": "/tracking-app/static/js/main.79e2e60c.js",
+    "main.css": "/tracking-app/static/css/main.ddeb3bef.css",
+    "main.js": "/tracking-app/static/js/main.068cf5bb.js",
     "index.html": "/tracking-app/index.html",
-    "main.752a8136.css.map": "/tracking-app/static/css/main.752a8136.css.map",
-    "main.79e2e60c.js.map": "/tracking-app/static/js/main.79e2e60c.js.map"
+    "main.ddeb3bef.css.map": "/tracking-app/static/css/main.ddeb3bef.css.map",
+    "main.068cf5bb.js.map": "/tracking-app/static/js/main.068cf5bb.js.map"
   },
   "entrypoints": [
-    "static/css/main.752a8136.css",
-    "static/js/main.79e2e60c.js"
+    "static/css/main.ddeb3bef.css",
+    "static/js/main.068cf5bb.js"
   ]
 }
