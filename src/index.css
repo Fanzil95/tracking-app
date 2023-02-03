@@ -1,13 +1,17 @@
 .leaflet-container{
     height: 400px;
-    width: 400px;
+    width: 40%;
     padding: 5px;
 }
 
-.mapContainer {
-    position: absolute;
+.mainContainer {
+    position:relative;
     display: flex;
-    
+
+}
+
+.table{
+width: 60%;
 }
 
 

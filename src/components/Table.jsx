@@ -1,50 +1,21 @@
 import React from 'react';
 import { Table } from 'antd';
+import { getListGoordinates } from '../api/api';
+import { useSelector } from 'react-redux';
+import { columns } from './columns';
 
-const columns = [
-    {
-      title: 'Номер заявки',
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: 'Координаты от Lat',
-      dataIndex: 'fromLat',
-      key: 'fromLat',
-    },
-    {
-      title: 'Координаты от Lng',
-      dataIndex: 'fromLng',
-      key: 'fromLng',
-    },
-    {
-      title: 'Координаты до Lat',
-      dataIndex: 'toLat',
-      key: 'toLat',
-    },
-    {
-      title: 'Координаты до Lng',
-      dataIndex: 'toLng',
-      key: 'toLng',
-    },
-  ];
+
   
-const _Table = ({dataSource, getCoordinates, getDataApi, handleRow}) => {
+const _Table = ({getCoordinates, createListDataApi, handleRow}) => {
 
-  function getDataCoordinates(f,t, id){
-    handleRow(id)
-    const urlApi = {url: `http://router.project-osrm.org/route/v1/driving/${f};${t}?alternatives=false&steps=false&geometries=geojson&overview=full&annotations=false`}
-    console.log(urlApi.url)
-    getCoordinates(f,t)
+const dataSource = useSelector(state=>state.dataSource)
 
-    fetch(urlApi.url)
-.then(response => response.json())
-.then(poly => {
- poly.routes.map(route=>getDataApi(route.geometry.coordinates))
-  })
-
-
-  }
+//f-fromCoordinate, t-toCoordinate
+function getDataCoordinates(f,t, id){
+  handleRow(id)
+  getListGoordinates(f,t, createListDataApi)
+  getCoordinates(f,t)
+}
     return (
         <Table 
         dataSource={dataSource} 
